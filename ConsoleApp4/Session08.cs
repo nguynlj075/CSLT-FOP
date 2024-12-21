@@ -158,12 +158,52 @@ namespace Fundamentals_of_Programming
                     Console.Write($"So chu cai: {chucai}. So so: {so}, So ky tu {kytu} ");
                 }
             }
-        static void Session08_09()
+        public static void CountVowelsAndConsonants(string s)
         {
+            int vowels = 0, consonants = 0;
+            foreach (char c in s.ToLower())
+            {
+                if ("aeiou".Contains(c)) vowels++;
+                else if (char.IsLetter(c)) consonants++;
+            }
 
+            Console.WriteLine($"Vowels: {vowels}, Consonants: {consonants}");
         }
 
-        
-    }
+        public static int CheckSubstring(string s, string sub)
+        {
+            return s.IndexOf(sub, StringComparison.Ordinal);
+        }
+
+        public static void CheckCharacter(char c)
+        {
+            if (char.IsLetter(c))
+            {
+                Console.WriteLine($"Character is an alphabet and is {(char.IsUpper(c) ? "uppercase" : "lowercase")}.");
+            }
+            else
+            {
+                Console.WriteLine("Character is not an alphabet.");
+            }
+        }
+
+        public static int CountSubstringOccurrences(string s, string sub)
+        {
+            int count = 0, pos = 0;
+            while ((pos = s.IndexOf(sub, pos, StringComparison.Ordinal)) != -1)
+            {
+                count++;
+                pos += sub.Length;
+            }
+            return count;
+        }
+
+        public static string InsertSubstring(string s, string sub)
+        {
+            int pos = CheckSubstring(s, sub);
+            return pos != -1 ? s.Insert(pos, sub) : s;
+        }
+
+        }
 
 }
